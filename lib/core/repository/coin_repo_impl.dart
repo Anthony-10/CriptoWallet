@@ -1,3 +1,5 @@
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/core/model/coins.dart';
 import 'package:new_crypto_wallet/core/repository/coin_repo.dart';
@@ -15,12 +17,15 @@ class CoinRepoImpl implements CoinRepo{
 
   @override
   Future<List<Coins>> getCoin() async {
-    // TODO: implement getCoin
+    // TODO: implement getCoin a must
     try {
       final response = await _httpService.getRequest("/v3/coins/markets?vs_currency=usd");
+      print("55555555555555555555555555555555555555555555");
+      print(response);
+      final parsedResponse = Coins.fromJson(response.data);
 
-      return response.data;
-
+     // print(Coins.fromJson(response.data));
+      return parsedResponse.coins;
 
     } on Exception catch (e) {
       print(e);
@@ -29,9 +34,18 @@ class CoinRepoImpl implements CoinRepo{
   }
 
   @override
-  Future<List<Coins>> getSearchCoin(String query) {
+  Future<List<Coins>> getSearchCoin(String query) async {
     // TODO: implement getSearchCoin
-    throw UnimplementedError();
+    try {
+      final response = await _httpService.getRequest("/v3/simple/price?ids=$query&vs_currencies=usd");
+
+      return response.data;
+
+
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
   }
 
 }

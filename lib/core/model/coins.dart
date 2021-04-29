@@ -7,11 +7,11 @@ class Coins {
 
   Coins();
 
-  @JsonKey(name : "id")
-  String id;
+  @JsonKey(name : "name")
+  String name;
 
   @JsonKey(name : "current_price")
-  String currentPrice;
+  int currentPrice;
 
 
   List<Coins> coins;

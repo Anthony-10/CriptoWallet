@@ -8,11 +8,15 @@ part of 'coins.dart';
 
 Coins _$CoinsFromJson(Map<String, dynamic> json) {
   return Coins()
-    ..id = json['id'] as String
-    ..currentPrice = json['current_price'] as String;
+    ..name = json['name'] as String
+    ..currentPrice = json['current_price'] as int
+    ..coins = (json['coins'] as List)
+        .map((e) => Coins.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$CoinsToJson(Coins instance) => <String, dynamic>{
-      'id': instance.id,
+      'name': instance.name,
       'current_price': instance.currentPrice,
+      'coins': instance.coins,
     };

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:new_crypto_wallet/service/http_service.dart';
 
 const BASE_URL = "https://api.coingecko.com/api/";
@@ -19,17 +20,19 @@ class HttpServiceImpl implements HttpService {
       throw Exception(e.message);
     }
     return response;
+
   }
 
   // helps to know about the request, error,response
 
-  void initializeInterceptors() {
+  initializeInterceptors() {
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     _dio.interceptors
-        .add(InterceptorsWrapper(onError: (error, errorInterceptorHandler) {
+        .add(InterceptorsWrapper(onError: (error,) {
       debugPrint(error.message);
-    }, onRequest: (request, requestInterceptorHandler) {
+    }, onRequest: (request, ) {
       debugPrint("${request.method} | ${request.path}");
-    }, onResponse: (response, responseInterceptorHandler) {
+    }, onResponse: (response, ) {
       debugPrint(
           "${response.statusCode} ${response.statusMessage} ${response.data}");
     }));
@@ -37,11 +40,10 @@ class HttpServiceImpl implements HttpService {
 
   @override
   void init() {
-    // TODO: implement init
     _dio = Dio(BaseOptions(
       baseUrl: BASE_URL,
-    ));
 
+    ));
     initializeInterceptors();
   }
 }
