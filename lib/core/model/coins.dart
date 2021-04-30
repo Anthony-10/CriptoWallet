@@ -13,6 +13,9 @@ class Coins {
   @JsonKey(name : "current_price")
   double currentPrice;
 
+  @JsonKey(name : "image")
+  String image;
+
 
   factory Coins.fromJson(Map<String, dynamic> json) => _$CoinsFromJson(json);
   Map<String, dynamic> toJson() => _$CoinsToJson(this);

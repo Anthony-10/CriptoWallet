@@ -23,6 +23,9 @@ class CoinsView extends StatelessWidget {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          controller.coins[index].image == null ?
+                          Container():
+                          Image.network(controller.coins[index].image,  width: 30.0,),
                           Text(controller.coins[index].name),
                           Text(controller.coins[index].currentPrice.toString())
                         ],

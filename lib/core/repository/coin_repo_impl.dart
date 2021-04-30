@@ -4,14 +4,13 @@ import 'package:new_crypto_wallet/core/repository/coin_repo.dart';
 import 'package:new_crypto_wallet/service/http_service.dart';
 import 'package:new_crypto_wallet/service/http_service_impl.dart';
 
-class CoinRepoImpl implements CoinRepo{
-
+class CoinRepoImpl implements CoinRepo {
   HttpService _httpService;
 
-    CoinRepoImpl(){
-      _httpService = Get.put(HttpServiceImpl());
-      _httpService.init();
-    }
+  CoinRepoImpl() {
+    _httpService = Get.put(HttpServiceImpl());
+    _httpService.init();
+  }
 
   @override
   Future<List<Coins>> getCoin() async {
@@ -19,7 +18,8 @@ class CoinRepoImpl implements CoinRepo{
     //List<Coins> coins;
 
     try {
-      final response = await _httpService.getRequest("/v3/coins/markets?vs_currency=usd");
+      final response =
+          await _httpService.getRequest("/v3/coins/markets?vs_currency=usd");
 
       // if (response.statusCode == 200) {
       //   final parsed = json.decode(response.data).cast<Map<String, dynamic>>();
@@ -29,7 +29,8 @@ class CoinRepoImpl implements CoinRepo{
       // }
 // print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 // print(response.data);
-       final parsedResponse =(response.data as List).map((x) => Coins.fromJson(x));
+      final parsedResponse =
+          (response.data as List).map((x) => Coins.fromJson(x));
 //           .toList();
 //       print("wewewwwwww");
 //       print(parsedResponse);
@@ -37,15 +38,11 @@ class CoinRepoImpl implements CoinRepo{
 //       return (response.data as List)
 //           .map((x) => Coins.fromJson(x))
 //           .toList();
-     // print(response.data[0]["id"]);
-
+      // print(response.data[0]["id"]);
 
       //final parsedResponse = response.data.map((item)=> Coins.fromJson(item)).toList();
 
-
-
       return parsedResponse.toList();
-
     } on Exception catch (e) {
       print(e);
       return null;
@@ -56,15 +53,13 @@ class CoinRepoImpl implements CoinRepo{
   Future<List<Coins>> getSearchCoin(String query) async {
     // TODO: implement getSearchCoin
     try {
-      final response = await _httpService.getRequest("/v3/simple/price?ids=$query&vs_currencies=usd");
+      final response = await _httpService
+          .getRequest("/v3/simple/price?ids=$query&vs_currencies=usd");
 
       return response.data;
-
-
     } on Exception catch (e) {
       print(e);
       return null;
     }
   }
-
 }
