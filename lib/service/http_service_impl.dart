@@ -11,7 +11,7 @@ class HttpServiceImpl implements HttpService {
 
   @override
   Future<Response> getRequest(String url) async {
-    // TODO: implement getRequest
+
     Response response;
     try {
       response = await _dio.get(url);

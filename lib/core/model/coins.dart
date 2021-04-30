@@ -11,10 +11,8 @@ class Coins {
   String name;
 
   @JsonKey(name : "current_price")
-  int currentPrice;
+  double currentPrice;
 
-
-  List<Coins> coins;
 
   factory Coins.fromJson(Map<String, dynamic> json) => _$CoinsFromJson(json);
   Map<String, dynamic> toJson() => _$CoinsToJson(this);

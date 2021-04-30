@@ -20,11 +20,10 @@ class CoinController extends GetxController {
     showLoading();
 
     final result = await _coinRepo.getCoin();
-   // print("kkkkkkkkkkkkkkkkkkkkkkkkkkk$result");
 
     hideLoading();
 
-    if (result!= null) {
+    if (result != null) {
       coins = result.obs;
     } else {
       debugPrint("No data recieved");
