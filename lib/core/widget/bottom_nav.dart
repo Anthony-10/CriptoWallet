@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_crypto_wallet/home_add/view/search_coin_view.dart';
+import 'package:new_crypto_wallet/favorite_add/view/favorite_coin_view.dart';
 import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
 import 'package:new_crypto_wallet/home_vew/view/coins_view.dart';
+import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
 
 class BottomNav extends StatefulWidget {
 
@@ -15,7 +16,8 @@ class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     CoinsView(),
-    CoinsSearchView(),
+    FavoriteCoinsView(),
+    ProfileView(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,8 +41,12 @@ class _BottomNavState extends State<BottomNav> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
+            icon: Icon(Icons.favorite),
+            label: 'Favorite',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,

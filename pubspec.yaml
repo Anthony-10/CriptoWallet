@@ -34,6 +34,9 @@ dependencies:
   dio: ^3.0.10
   get: ^4.1.4
   json_serializable: 3.5.1
+  firebase_auth:
+  firebase_core:
+  cloud_firestore: ^0.14.0+2
 
 
 
