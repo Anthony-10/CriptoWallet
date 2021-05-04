@@ -42,9 +42,14 @@ class MyApp extends StatelessWidget {
             page: () => CoinsView(),
             binding: CoinsBinding()),
         GetPage(
-            name: "/Coins_search_view",
+            name: "/favorite_coins_view",
             page: () => FavoriteCoinsView(),
             binding: FavoriteCoinBinding()),
+        GetPage(
+            name: "/Profile_view",
+            page: () => ProfileView(),
+            binding: AuthBinding()),
+
         GetPage(name: "/Coins_search_view", page: () => ProfileView()),
         GetPage(
             name: "/bottom_nav",

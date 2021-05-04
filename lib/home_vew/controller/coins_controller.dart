@@ -26,7 +26,7 @@ class CoinController extends GetxController {
     if (result != null) {
       coins = result.obs;
     } else {
-      debugPrint("No data recieved");
+      debugPrint("No data received");
     }
   }
 
