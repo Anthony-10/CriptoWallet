@@ -13,7 +13,6 @@ import 'favorite_add/binding/favorite_coin_binding.dart';
 import 'favorite_add/view/favorite_coin_view.dart';
 import 'home_vew/view/coins_view.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -31,13 +30,26 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       getPages: [
-        GetPage(name: "/login", page: () => Login(), binding: AuthBinding() ),
-        GetPage(name: "/register", page: () => Register(), binding: AuthBinding() ),
-        GetPage(name: "/registerStatus", page: () => RegisterStatus(), bindings: [AuthBinding(), CoinsBinding()] ),
-        GetPage(name: "/coin_view", page: () => CoinsView(), binding: CoinsBinding() ),
-        GetPage(name: "/Coins_search_view", page: () => FavoriteCoinsView(), binding: FavoriteCoinBinding()),
+        GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
+        GetPage(
+            name: "/register", page: () => Register(), binding: AuthBinding()),
+        GetPage(
+            name: "/registerStatus",
+            page: () => RegisterStatus(),
+            bindings: [AuthBinding(), CoinsBinding()]),
+        GetPage(
+            name: "/coin_view",
+            page: () => CoinsView(),
+            binding: CoinsBinding()),
+        GetPage(
+            name: "/Coins_search_view",
+            page: () => FavoriteCoinsView(),
+            binding: FavoriteCoinBinding()),
         GetPage(name: "/Coins_search_view", page: () => ProfileView()),
-        GetPage(name: "/bottom_nav", page: () => BottomNav(), binding: CoinsBinding())
+        GetPage(
+            name: "/bottom_nav",
+            page: () => BottomNav(),
+            binding: CoinsBinding())
       ],
       initialRoute: "/registerStatus",
     );
