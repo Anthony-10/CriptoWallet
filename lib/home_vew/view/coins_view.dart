@@ -48,32 +48,32 @@ class _CoinsViewState extends State<CoinsView> {
                   }),
         ],
       ),
-      body: Column(
-          children: [
-            SizedBox(
-              width: double.infinity,
-              height: 200,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                color: Colors.blue,
-                elevation: 10,
-                margin: EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.circle, size: 70),
-                      title: Text('Crypto', style: TextStyle(color: Colors.white)),
-                      subtitle: Text('Currency', style: TextStyle(color: Colors.white)),
-                    ),
-                  ],
-                ),
-              ),
+      body: Column(children: [
+        SizedBox(
+          width: double.infinity,
+          height: 200,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
             ),
-          Flexible(
-            child: Obx(() {
+            color: Colors.blue,
+            elevation: 10,
+            margin: EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.circle, size: 70),
+                  title: Text('Crypto', style: TextStyle(color: Colors.white)),
+                  subtitle:
+                      Text('Currency', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Flexible(
+          child: Obx(() {
             if (controller.isLoading.isTrue) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -82,7 +82,8 @@ class _CoinsViewState extends State<CoinsView> {
               return Container(
                 margin: EdgeInsets.all(10),
                 child: ListView.separated(
-                  physics: ClampingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
+                  //physics: ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,10 +112,9 @@ class _CoinsViewState extends State<CoinsView> {
             } else {
               return Center(child: Text("Check your internet connection"));
             }
-        }),
-          ),
-    ]
-      ),
+          }),
+        ),
+      ]),
     );
   }
 }

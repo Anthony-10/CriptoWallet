@@ -59,8 +59,11 @@ class _ProfileViewState extends State<ProfileView> {
                                   )),
                               SizedBox(width: 20),
                               Column(children: [
-                                Text(snapshot.data.docs[index]['First Name']
-                                    .toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+                                Text(
+                                  snapshot.data.docs[index]['First Name']
+                                      .toString(),
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
                                 Text(snapshot.data.docs[index]['Email']
                                     .toString()),
                               ])
