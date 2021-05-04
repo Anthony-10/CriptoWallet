@@ -11,7 +11,6 @@ class HttpServiceImpl implements HttpService {
 
   @override
   Future<Response> getRequest(String url) async {
-
     Response response;
     try {
       response = await _dio.get(url);
@@ -20,19 +19,22 @@ class HttpServiceImpl implements HttpService {
       throw Exception(e.message);
     }
     return response;
-
   }
 
-  // helps to know about the request, error,response
+
 
   initializeInterceptors() {
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-    _dio.interceptors
-        .add(InterceptorsWrapper(onError: (error,) {
+    _dio.interceptors.add(InterceptorsWrapper(onError: (
+      error,
+    ) {
       debugPrint(error.message);
-    }, onRequest: (request, ) {
+    }, onRequest: (
+      request,
+    ) {
       debugPrint("${request.method} | ${request.path}");
-    }, onResponse: (response, ) {
+    }, onResponse: (
+      response,
+    ) {
       debugPrint(
           "${response.statusCode} ${response.statusMessage} ${response.data}");
     }));
@@ -42,7 +44,6 @@ class HttpServiceImpl implements HttpService {
   void init() {
     _dio = Dio(BaseOptions(
       baseUrl: BASE_URL,
-
     ));
     initializeInterceptors();
   }

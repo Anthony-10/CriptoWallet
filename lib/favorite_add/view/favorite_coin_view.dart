@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class FavoriteCoinsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -9,8 +8,8 @@ class FavoriteCoinsView extends StatelessWidget {
           iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Center(child: Text("Favorite", style: TextStyle(color: Colors.black)))
-      ),
+          title: Center(
+              child: Text("Favorite", style: TextStyle(color: Colors.black)))),
       body: Container(),
     );
   }

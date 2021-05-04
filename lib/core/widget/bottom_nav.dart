@@ -6,11 +6,9 @@ import 'package:new_crypto_wallet/home_vew/view/coins_view.dart';
 import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
 
 class BottomNav extends StatefulWidget {
-
   @override
   _BottomNavState createState() => _BottomNavState();
 }
-
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;

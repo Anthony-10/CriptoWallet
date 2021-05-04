@@ -32,22 +32,22 @@ class _CoinsViewState extends State<CoinsView> {
                     icon: Icon(Icons.search), hintText: "Search"),
               ),
         actions: <Widget>[
-          isSearching ?
+          isSearching
+              ? IconButton(
+                  icon: Icon(Icons.cancel),
+                  onPressed: () {
+                    setState(() {
+                      isSearching = !isSearching;
+                    });
+                  })
+              : IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      isSearching = !isSearching;
+                    });
+                  }),
           IconButton(
-              icon: Icon(Icons.cancel),
-              onPressed: () {
-                setState(() {
-                  isSearching = !isSearching;
-                });
-              })
-          : IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                setState(() {
-                  isSearching = !isSearching;
-                });
-              }),
-           IconButton(
             icon: const Icon(Icons.exit_to_app),
             onPressed: () async {
               authController.signOut();

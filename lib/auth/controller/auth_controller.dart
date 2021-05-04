@@ -13,8 +13,7 @@ class AuthController extends GetxController {
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
-  Future<void> createUser(
-      {String email, String password}) async {
+  Future<void> createUser({String email, String password}) async {
     try {
       await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
