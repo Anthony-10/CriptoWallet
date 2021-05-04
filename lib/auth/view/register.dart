@@ -8,6 +8,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final TextEditingController _userController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -23,6 +24,12 @@ class _RegisterState extends State<Register> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                TextFormField(
+                  key: const ValueKey("username"),
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(hintText: "Username"),
+                  controller: _userController,
+                ),
                 TextFormField(
                   key: const ValueKey("email"),
                   textAlign: TextAlign.center,
@@ -47,6 +54,7 @@ class _RegisterState extends State<Register> {
                   key: const ValueKey("createAccount"),
                   onPressed: () async {
                     authController.createUser(
+                        firstName: _userController.text,
                         email: _emailController.text,
                         password: _passwordController.text);
                   },

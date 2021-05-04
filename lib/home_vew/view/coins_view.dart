@@ -14,7 +14,6 @@ class _CoinsViewState extends State<CoinsView> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<CoinController>();
-    final authController = Get.find<AuthController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -47,52 +46,75 @@ class _CoinsViewState extends State<CoinsView> {
                       isSearching = !isSearching;
                     });
                   }),
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () async {
-              authController.signOut();
-            },
-          ),
         ],
       ),
-      body: Obx(() {
-        if (controller.isLoading.isTrue) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (controller.coins != null) {
-          return Container(
-            margin: EdgeInsets.all(10),
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.network(
-                      controller.coins[index].image,
-                      width: 40.0,
+      body: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: Colors.blue,
+                elevation: 10,
+                margin: EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      leading: Icon(Icons.circle, size: 70),
+                      title: Text('Crypto', style: TextStyle(color: Colors.white)),
+                      subtitle: Text('Currency', style: TextStyle(color: Colors.white)),
                     ),
-                    Text(
-                      controller.coins[index].name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15.0),
-                    ),
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                            controller.coins[index].currentPrice.toString(),
-                            style: TextStyle(fontSize: 20.0)))
                   ],
-                );
-              },
-              separatorBuilder: (context, index) => Divider(),
-              itemCount: controller.coins.length,
+                ),
+              ),
             ),
-          );
-        } else {
-          return Center(child: Text("Check your internet connection"));
-        }
-      }),
+          Flexible(
+            child: Obx(() {
+            if (controller.isLoading.isTrue) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (controller.coins != null) {
+              return Container(
+                margin: EdgeInsets.all(10),
+                child: ListView.separated(
+                  physics: ClampingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.network(
+                          controller.coins[index].image,
+                          width: 40.0,
+                        ),
+                        Text(
+                          controller.coins[index].name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15.0),
+                        ),
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                                controller.coins[index].currentPrice.toString(),
+                                style: TextStyle(fontSize: 20.0)))
+                      ],
+                    );
+                  },
+                  separatorBuilder: (context, index) => Divider(),
+                  itemCount: controller.coins.length,
+                ),
+              );
+            } else {
+              return Center(child: Text("Check your internet connection"));
+            }
+        }),
+          ),
+    ]
+      ),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -13,10 +14,23 @@ class AuthController extends GetxController {
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
-  Future<void> createUser({String email, String password}) async {
+  Future<void> createUser({String email, String password, String firstName}) async {
     try {
+
+      final CollectionReference reference = FirebaseFirestore.instance.collection("Users");
+
+      Map<String, String> userdata = {
+        "First Name": firstName,
+        "Email" : email
+      };
+
       await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
+
+      {
+        reference.add(userdata);
+      }
+
       Get.back();
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error creating account", e.message,
