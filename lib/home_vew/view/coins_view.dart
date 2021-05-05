@@ -27,8 +27,9 @@ class _CoinsViewState extends State<CoinsView> {
                 style: TextStyle(color: Colors.black),
               ))
             : TextField(
+                controller: controller.searchTextController,
                 decoration: InputDecoration(
-                    icon: Icon(Icons.search), hintText: "Search"),
+                    prefixIcon: Icon(Icons.search), hintText: "Search"),
               ),
         actions: <Widget>[
           isSearching
@@ -56,22 +57,86 @@ class _CoinsViewState extends State<CoinsView> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            color: Colors.blue,
+            color: Colors.black,
             elevation: 10,
             margin: EdgeInsets.all(10.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.circle, size: 70),
-                  title: Text('Crypto', style: TextStyle(color: Colors.white)),
-                  subtitle:
-                      Text('Currency', style: TextStyle(color: Colors.white)),
+                ListTile(
+                  title: Text('Crypto Wallet',
+                      style: TextStyle(color: Colors.white)),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Align(
+                    alignment: Alignment(-0.8, 0.1),
+                    child: Text(
+                      "300.00 KSH",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    )),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        IconButton(
+                            icon: Icon(
+                              Icons.account_balance_wallet,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {}),
+                        Text('Deposit', style: TextStyle(color: Colors.white))
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                            icon: Icon(Icons.account_balance_wallet_outlined,
+                                color: Colors.white),
+                            onPressed: () {}),
+                        Text('WithDraw', style: TextStyle(color: Colors.white))
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        IconButton(
+                            icon: Icon(Icons.account_balance_sharp,
+                                color: Colors.white),
+                            onPressed: () {}),
+                        Text(
+                          'Transfer',
+                          style: TextStyle(color: Colors.white),
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
+       Row(
+         children: [
+            Flexible(child: !isSearching
+                ? Center(
+                child: Text(
+                  'Coins',
+                  style: TextStyle(color: Colors.black),
+                ))
+                : TextField(
+              controller: controller.searchTextController,
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search), hintText: "Search"),
+            ),
+    ),
+    ]
+       ),
         Flexible(
           child: Obx(() {
             if (controller.isLoading.isTrue) {
@@ -83,7 +148,6 @@ class _CoinsViewState extends State<CoinsView> {
                 margin: EdgeInsets.all(10),
                 child: ListView.separated(
                   physics: BouncingScrollPhysics(),
-                  //physics: ClampingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

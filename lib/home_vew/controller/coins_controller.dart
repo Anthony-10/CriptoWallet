@@ -10,7 +10,17 @@ class CoinController extends GetxController {
   CoinController() {
     _coinRepo = Get.find<CoinRepoImpl>();
     loadCoins();
+    searchTextController.addListener(() {
+      print("rrrrrrrrrrrrr");
+      if (searchTextController.text.length == 0) {
+        loadCoins();
+      } else {
+        searchCoins();
+      }
+    });
   }
+
+  final searchTextController = TextEditingController();
 
   RxBool isLoading = false.obs;
 
@@ -20,6 +30,20 @@ class CoinController extends GetxController {
     showLoading();
 
     final result = await _coinRepo.getCoin();
+print("weeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    hideLoading();
+
+    if (result != null) {
+      coins = result.obs;
+    } else {
+      debugPrint("No data received");
+    }
+  }
+
+  searchCoins() async {
+    showLoading();
+
+    final result = await _coinRepo.getSearchCoin(searchTextController.text);
 
     hideLoading();
 

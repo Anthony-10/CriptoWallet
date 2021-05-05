@@ -37,7 +37,10 @@ class CoinRepoImpl implements CoinRepo {
       final response = await _httpService
           .getRequest("/v3/simple/price?ids=$query&vs_currencies=usd");
 
-      return response.data;
+      final parsedResponse =
+      (response.data as List).map((x) => Coins.fromJson(x));
+
+      return parsedResponse.toList();
     } on Exception catch (e) {
       print(e);
       return null;
