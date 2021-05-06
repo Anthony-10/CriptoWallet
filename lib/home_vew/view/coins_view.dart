@@ -1,6 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
+import 'package:new_crypto_wallet/all_coins/view/all_coins_view.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
+import 'package:new_crypto_wallet/core/widget/categories.dart';
+import 'package:new_crypto_wallet/favorite_add/view/favorite_coin_view.dart';
 import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
 
 class CoinsView extends StatefulWidget {
@@ -13,7 +18,10 @@ class _CoinsViewState extends State<CoinsView> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CoinController>();
+    final allcoinscontroller = Get.find<AllCoinsController>();
+    final coincontroller = Get.find<CoinController>();
+    int selectedPage=0;
+    final PageController controller = PageController(initialPage: selectedPage);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +35,7 @@ class _CoinsViewState extends State<CoinsView> {
                 style: TextStyle(color: Colors.black),
               ))
             : TextField(
-                controller: controller.searchTextController,
+                //controller: allcoinscontroller.searchTextController,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search), hintText: "Search"),
               ),
@@ -121,63 +129,65 @@ class _CoinsViewState extends State<CoinsView> {
             ),
           ),
         ),
-       Row(
-         children: [
-            Flexible(child: !isSearching
-                ? Center(
-                child: Text(
-                  'Coins',
-                  style: TextStyle(color: Colors.black),
-                ))
-                : TextField(
-              controller: controller.searchTextController,
-              decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search), hintText: "Search"),
+        Categories(function: (){
+          print(selectedPage);
+        },controller: controller,),
+        Expanded(
+          child: Container(
+            child: PageView(
+              controller: controller,
+              children: [
+                AllCoinsView(),
+                FavoriteCoinsView(),
+                Text("one"),
+                Text("two"),
+                Text("three"),
+              ],
             ),
-    ),
-    ]
-       ),
-        Flexible(
-          child: Obx(() {
-            if (controller.isLoading.isTrue) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (controller.coins != null) {
-              return Container(
-                margin: EdgeInsets.all(10),
-                child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.network(
-                          controller.coins[index].image,
-                          width: 40.0,
-                        ),
-                        Text(
-                          controller.coins[index].name,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15.0),
-                        ),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                                controller.coins[index].currentPrice.toString(),
-                                style: TextStyle(fontSize: 20.0)))
-                      ],
-                    );
-                  },
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: controller.coins.length,
-                ),
-              );
-            } else {
-              return Center(child: Text("Check your internet connection"));
-            }
-          }),
-        ),
+          ),
+        )
+        // Flexible(
+        //   child: controller.,
+        // child: Obx(() {
+        //   if (controller.isLoading.isTrue) {
+        //     return Center(
+        //       child: CircularProgressIndicator(),
+        //     );
+        //   } else if (controller.coins != null) {
+        //     return Container(
+        //       margin: EdgeInsets.all(10),
+        //       child: ListView.separated(
+        //         physics: BouncingScrollPhysics(),
+        //         itemBuilder: (context, index) {
+        //           return Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: [
+        //               Image.network(
+        //                 controller.coins[index].image,
+        //                 width: 40.0,
+        //               ),
+        //               Text(
+        //                 controller.coins[index].name,
+        //                 style: TextStyle(
+        //                     fontWeight: FontWeight.bold, fontSize: 15.0),
+        //               ),
+        //               Align(
+        //                   alignment: Alignment.centerRight,
+        //                   child: Text(
+        //                       controller.coins[index].currentPrice.toString(),
+        //                       style: TextStyle(fontSize: 20.0)))
+        //             ],
+        //           );
+        //         },
+        //         separatorBuilder: (context, index) => Divider(),
+        //         itemCount: controller.coins.length,
+        //       ),
+        //     );
+        //   } else {
+        //     return Center(child: Text("Check your internet connection"));
+        //   }
+        // }),
+        //),
       ]),
     );
   }

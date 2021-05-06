@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
 import 'package:new_crypto_wallet/favorite_add/view/favorite_coin_view.dart';
 import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
 import 'package:new_crypto_wallet/home_vew/view/coins_view.dart';
@@ -24,7 +25,8 @@ class _BottomNavState extends State<BottomNav> {
     });
   }
 
-  final controller = Get.find<CoinController>();
+  final allcoinscontroller = Get.find<AllCoinsController>();
+  final coincontroller = Get.find<CoinController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,8 @@ class _BottomNavState extends State<BottomNav> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorite',
+            icon: Icon(Icons.book_online),
+            label: 'News',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

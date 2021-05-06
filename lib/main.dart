@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_crypto_wallet/all_coins/binding/all_coins_binding.dart';
 import 'package:new_crypto_wallet/auth/binding/auth_binding.dart';
 import 'package:new_crypto_wallet/auth/register_status/register_statuse.dart';
 import 'package:new_crypto_wallet/auth/view/login.dart';
@@ -36,11 +37,11 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/registerStatus",
             page: () => RegisterStatus(),
-            bindings: [AuthBinding(), CoinsBinding()]),
+            bindings: [AuthBinding(), AllCoinsBinding(), CoinsBinding()]),
         GetPage(
             name: "/coin_view",
             page: () => CoinsView(),
-            binding: CoinsBinding()),
+            bindings: [AllCoinsBinding(), CoinsBinding()]),
         GetPage(
             name: "/favorite_coins_view",
             page: () => FavoriteCoinsView(),
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/bottom_nav",
             page: () => BottomNav(),
-            binding: CoinsBinding())
+            bindings: [AllCoinsBinding(), CoinsBinding()])
       ],
       initialRoute: "/registerStatus",
     );
