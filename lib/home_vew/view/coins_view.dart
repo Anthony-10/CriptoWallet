@@ -1,12 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
 import 'package:new_crypto_wallet/all_coins/view/all_coins_view.dart';
-import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
 import 'package:new_crypto_wallet/core/widget/categories.dart';
 import 'package:new_crypto_wallet/favorite_add/view/favorite_coin_view.dart';
 import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
+import 'package:new_crypto_wallet/majors_coins/controller/major_coins_controller.dart';
+import 'package:new_crypto_wallet/majors_coins/view/major_coins_view.dart';
 
 class CoinsView extends StatefulWidget {
   @override
@@ -20,6 +20,8 @@ class _CoinsViewState extends State<CoinsView> {
   Widget build(BuildContext context) {
     final allcoinscontroller = Get.find<AllCoinsController>();
     final coincontroller = Get.find<CoinController>();
+    final majorcoinscontroller = Get.find<MajorCoinsController>();
+
     int selectedPage=0;
     final PageController controller = PageController(initialPage: selectedPage);
 
@@ -135,11 +137,12 @@ class _CoinsViewState extends State<CoinsView> {
         Expanded(
           child: Container(
             child: PageView(
+              physics:new NeverScrollableScrollPhysics(),
               controller: controller,
               children: [
                 AllCoinsView(),
                 FavoriteCoinsView(),
-                Text("one"),
+                MajorCoinView(),
                 Text("two"),
                 Text("three"),
               ],

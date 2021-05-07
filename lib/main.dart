@@ -13,6 +13,8 @@ import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
 import 'favorite_add/binding/favorite_coin_binding.dart';
 import 'favorite_add/view/favorite_coin_view.dart';
 import 'home_vew/view/coins_view.dart';
+import 'majors_coins/binding/major_coins_binding.dart';
+import 'majors_coins/view/major_coins_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,15 +35,15 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
         GetPage(
-            name: "/register", page: () => Register(), binding: AuthBinding()),
+            name: "/register", page: () => Register(), bindings: [AuthBinding()]),
         GetPage(
             name: "/registerStatus",
             page: () => RegisterStatus(),
-            bindings: [AuthBinding(), AllCoinsBinding(), CoinsBinding()]),
+            bindings: [AuthBinding(), AllCoinsBinding(), CoinsBinding(), MajorCoinsViewBinding()]),
         GetPage(
             name: "/coin_view",
             page: () => CoinsView(),
-            bindings: [AllCoinsBinding(), CoinsBinding()]),
+            bindings: [AllCoinsBinding(), CoinsBinding(), MajorCoinsViewBinding()]),
         GetPage(
             name: "/favorite_coins_view",
             page: () => FavoriteCoinsView(),
@@ -51,11 +53,12 @@ class MyApp extends StatelessWidget {
             page: () => ProfileView(),
             binding: AuthBinding()),
 
+        GetPage(name: "/major_coin_view", page: () => MajorCoinView(), binding: MajorCoinsViewBinding()),
         GetPage(name: "/Coins_search_view", page: () => ProfileView()),
         GetPage(
             name: "/bottom_nav",
             page: () => BottomNav(),
-            bindings: [AllCoinsBinding(), CoinsBinding()])
+            bindings: [AllCoinsBinding(), CoinsBinding(), MajorCoinsViewBinding()])
       ],
       initialRoute: "/registerStatus",
     );

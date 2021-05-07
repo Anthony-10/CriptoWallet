@@ -10,7 +10,7 @@ class Coins {
   String name;
 
   @JsonKey(name: "current_price")
-  double currentPrice;
+  var currentPrice;
 
   @JsonKey(name: "image")
   String image;

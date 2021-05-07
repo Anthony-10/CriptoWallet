@@ -9,7 +9,7 @@ part of 'coins.dart';
 Coins _$CoinsFromJson(Map<String, dynamic> json) {
   return Coins()
     ..name = json['name'] as String
-    ..currentPrice = (json['current_price'] as num).toDouble()
+    ..currentPrice = json['current_price']
     ..image = json['image'] as String;
 }
 
