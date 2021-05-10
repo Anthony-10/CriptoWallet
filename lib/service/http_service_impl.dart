@@ -21,8 +21,6 @@ class HttpServiceImpl implements HttpService {
     return response;
   }
 
-
-
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onError: (
       error,

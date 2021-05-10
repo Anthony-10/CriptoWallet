@@ -17,60 +17,77 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(60.0),
-          child: Builder(builder: (BuildContext context) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  key: const ValueKey("username"),
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(hintText: "Username"),
-                  controller: _userController,
-                ),
-                TextFormField(
-                  key: const ValueKey("email"),
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    hintText: "Email",
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(60.0),
+            child: Builder(builder: (BuildContext context) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "G-Market",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
                   ),
-                  controller: _emailController,
-                ),
-                TextFormField(
-                  obscureText: true,
-                  key: const ValueKey("password"),
-                  textAlign: TextAlign.center,
-                  decoration: const InputDecoration(
-                    hintText: "Password",
+                  SizedBox(height: 100.0),
+                  TextFormField(
+                      key: const ValueKey("username"),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                      color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(hintText: "Username"),
+                      controller: _userController,
+                      ),
+                  TextFormField(
+                    key: const ValueKey("email"),
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      hintText: "Email",
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    controller: _emailController,
                   ),
-                  controller: _passwordController,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  key: const ValueKey("createAccount"),
-                  onPressed: () async {
-                    authController.createUser(
-                        firstName: _userController.text,
-                        email: _emailController.text,
-                        password: _passwordController.text);
-                  },
-                  child: const Text("Create Account"),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextButton(
-                    onPressed: () {
-                      Get.toNamed('/login');
+                  TextFormField(
+                    obscureText: true,
+                    key: const ValueKey("password"),
+                    textAlign: TextAlign.center,
+                    decoration: const InputDecoration(
+                      hintText: "Password",
+                    ),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                    controller: _passwordController,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    key: const ValueKey("createAccount"),
+                    onPressed: () async {
+                      authController.createUser(
+                          firstName: _userController.text,
+                          email: _emailController.text,
+                          password: _passwordController.text);
                     },
-                    child: const Text('Already have an account Login')),
-              ],
-            );
-          }),
+                    child: const Text("Create Account"),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.toNamed('/login');
+                      },
+                      child: const Text('Already have an account Login')),
+                ],
+              );
+            }),
+          ),
         ),
       ),
     );
