@@ -9,7 +9,6 @@ import 'package:new_crypto_wallet/auth/view/login.dart';
 import 'package:new_crypto_wallet/auth/view/register.dart';
 import 'package:new_crypto_wallet/core/widget/bottom_nav.dart';
 import 'package:new_crypto_wallet/home_vew/binding/coins_binding.dart';
-import 'package:new_crypto_wallet/loading_screen/binding/loading_binding.dart';
 import 'package:new_crypto_wallet/loading_screen/loading_view/loading_screen.dart';
 import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
 import 'package:new_crypto_wallet/search_coins/binding/search_view_binding.dart';
@@ -41,7 +40,6 @@ class MyApp extends StatelessWidget {
             name: "/loading_screen",
             page: () => LoadingScreen(),
             bindings: [
-              LoadingBoding(),
               AuthBinding(),
             ]),
         GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),

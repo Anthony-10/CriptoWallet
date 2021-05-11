@@ -36,12 +36,34 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-            child: Text(
-          "G-Market",
+    return /*Stack(
+      alignment: Alignment.center,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset("assets/cripto1.jpg",
+          fit: BoxFit.cover),
+        Center(
+          child: Text(
+            "Finexness",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
+          ),
+        ),
+      ],
+    );*/
+    Container(
+        constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/cripto1.jpg'),
+              fit: BoxFit.fill
+            )
+          ),
+            child: Align(
+              alignment: Alignment(0.2, 0.6),
+              child: Text(
+          "Finexness",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
-        )));
+        ),
+            ));
   }
 }

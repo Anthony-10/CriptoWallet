@@ -38,6 +38,7 @@ dependencies:
   firebase_core:
   cloud_firestore: ^0.14.0+2
   shared_preferences: ^2.0.5
+  local_auth:
 
 
 
@@ -63,7 +64,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/cripto.jpg
+    - assets/cripto1.jpg
+    - assets/slide1.jpg
+    - assets/slide2.jpg
+    - assets/slide3.jpg
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

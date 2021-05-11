@@ -17,7 +17,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black12,
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -28,23 +28,38 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     "G-Market",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50.0,
+                        color: Colors.amberAccent),
                   ),
                   SizedBox(height: 100.0),
                   TextFormField(
-                      key: const ValueKey("username"),
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
+                    key: const ValueKey("username"),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
                       color: Colors.white,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: "Username",
+                      fillColor: Colors.grey,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
-                      decoration: const InputDecoration(hintText: "Username"),
-                      controller: _userController,
-                      ),
+                    ),
+                    controller: _userController,
+                  ),
                   TextFormField(
                     key: const ValueKey("email"),
                     textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Email",
+                      fillColor: Colors.grey,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
                     style: TextStyle(
                       color: Colors.white,
@@ -55,8 +70,13 @@ class _RegisterState extends State<Register> {
                     obscureText: true,
                     key: const ValueKey("password"),
                     textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
+                    decoration:  InputDecoration(
                       hintText: "Password",
+                      fillColor: Colors.grey,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
                     style: TextStyle(
                       color: Colors.white,

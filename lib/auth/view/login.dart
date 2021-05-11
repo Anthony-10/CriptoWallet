@@ -59,6 +59,10 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 20,
                   ),
+                  IconButton(icon: Icon(Icons.fingerprint, size: 60.0,), onPressed: (){}),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   TextButton(
                       onPressed: () {
                         Get.toNamed('/register');

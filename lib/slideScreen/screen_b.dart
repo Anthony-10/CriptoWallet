@@ -4,39 +4,27 @@ import 'package:get/get.dart';
 import 'package:new_crypto_wallet/slideScreen/screen_a.dart';
 
 class ScreenB extends StatefulWidget {
-
   @override
   _ScreenBState createState() => _ScreenBState();
 }
 
 class _ScreenBState extends State<ScreenB> {
-
   int _currentPage = 0;
   final PageController _controller = PageController();
 
   final List<Widget> _pages = [
     const ScreenA(
-        title: "Networking",
-        description:
-            "Your network is your net worth.",
-        image: "assets/cripto.jpg"),
+        title: "Trade",
+        image: "assets/slide1.jpg"),
     const ScreenA(
-        title: "Buying",
-        description:
-            "Know what you own, and know why you own it.",
-        image: "assets/shopper.jpg"),
+        title: "Buy",
+        image: "assets/slide2.jpg"),
     const ScreenA(
         title: "Sell",
-        description:
-            "Sell your Goods and services to people",
-        image: "assets/market.jpg"),
-
-
+        image: "assets/slide3.jpg"),
   ];
 
-
-
- void _onChanged(int index) {
+  void _onChanged(int index) {
     setState(() {
       _currentPage = index;
     });
@@ -66,8 +54,8 @@ class _ScreenBState extends State<ScreenB> {
                         duration: const Duration(milliseconds: 300),
                         height: 10,
                         width: (index == _currentPage) ? 30 : 10,
-                        margin:
-                            const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 30),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: (index == _currentPage)
@@ -90,18 +78,17 @@ class _ScreenBState extends State<ScreenB> {
                       borderRadius: BorderRadius.circular(35)),
                   child: (_currentPage == (_pages.length - 1))
                       ? InkWell(
-                    onTap: (){
-                     Get.toNamed("/register");
-                    },
-                        child: const Text(
+                          onTap: () {
+                            Get.toNamed("/register");
+                          },
+                          child: const Text(
                             "Get Started",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
                             ),
                           ),
-                      )
-
+                        )
                       : const Icon(
                           Icons.navigate_next,
                           size: 50,
@@ -112,14 +99,10 @@ class _ScreenBState extends State<ScreenB> {
               const SizedBox(
                 height: 50,
               )
-
             ],
-
           ),
         ],
-
       ),
-
     );
   }
 }
