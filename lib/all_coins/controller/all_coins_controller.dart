@@ -27,11 +27,13 @@ class AllCoinsController extends GetxController {
 
   RxList<Coins> coins;
 
+
+
+
   loadCoins() async {
     showLoading();
 
     final result = await _coinRepo.getCoin();
-    print("weeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     hideLoading();
 
     if (result != null) {

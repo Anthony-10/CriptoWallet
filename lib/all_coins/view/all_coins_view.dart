@@ -30,10 +30,6 @@ class _AllCoinsViewState extends State<AllCoinsView> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        controller.coins[index].image,
-                        width: 40.0,
-                      ),
                       Text(
                         controller.coins[index].name,
                         style: TextStyle(
@@ -41,9 +37,9 @@ class _AllCoinsViewState extends State<AllCoinsView> {
                       ),
                       Align(
                           alignment: Alignment.centerRight,
-                          child: Text(
-                              controller.coins[index].currentPrice.toString(),
-                              style: TextStyle(fontSize: 20.0)))
+                          child: Text("USD: ${
+                              controller.coins[index].currentPrice.toString()}",
+                              style: TextStyle(fontSize: 15.0)))
                     ],
                   );
                 },
