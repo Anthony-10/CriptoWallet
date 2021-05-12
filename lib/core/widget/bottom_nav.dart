@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
-import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
 import 'package:new_crypto_wallet/home_vew/view/coins_view.dart';
-import 'package:new_crypto_wallet/majors_coins/controller/major_coins_controller.dart';
 import 'package:new_crypto_wallet/news_view/view/news_coin_view.dart';
 import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
 
@@ -14,6 +10,7 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
+
   static final List<Widget> _widgetOptions = <Widget>[
     CoinsView(),
     NewsCoinView(),
@@ -25,11 +22,6 @@ class _BottomNavState extends State<BottomNav> {
       _selectedIndex = index;
     });
   }
-
-  final allcoinscontroller = Get.find<AllCoinsController>();
-  final coincontroller = Get.find<CoinController>();
-  final majorcoinscontroller = Get.find<MajorCoinsController>();
-
 
   @override
   Widget build(BuildContext context) {

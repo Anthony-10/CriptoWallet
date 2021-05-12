@@ -7,7 +7,6 @@ import 'package:new_crypto_wallet/core/widget/bottom_nav.dart';
 class RegisterStatus extends StatelessWidget {
   final authController = Get.find<AuthController>();
 
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
 import 'package:new_crypto_wallet/all_coins/view/all_coins_view.dart';
 import 'package:new_crypto_wallet/core/widget/categories.dart';
 import 'package:new_crypto_wallet/favorite_add/view/favorite_coin_view.dart';
-import 'package:new_crypto_wallet/home_vew/controller/coins_controller.dart';
-import 'package:new_crypto_wallet/majors_coins/controller/major_coins_controller.dart';
 import 'package:new_crypto_wallet/majors_coins/view/major_coins_view.dart';
 import 'package:new_crypto_wallet/search_coins/view/search_view.dart';
 
@@ -19,10 +16,6 @@ class _CoinsViewState extends State<CoinsView> {
 
   @override
   Widget build(BuildContext context) {
-    final allcoinscontroller = Get.find<AllCoinsController>();
-    final coincontroller = Get.find<CoinController>();
-    final majorcoinscontroller = Get.find<MajorCoinsController>();
-
     int selectedPage = 0;
     final PageController controller = PageController(initialPage: selectedPage);
 
@@ -117,16 +110,16 @@ class _CoinsViewState extends State<CoinsView> {
               children: [
                 isSearching
                     ? Align(
-                  alignment: Alignment.centerRight,
-                      child: IconButton(
-                          icon: Icon(Icons.cancel),
-                          onPressed: () {
-                            setState(() {
-                              isSearching = !isSearching;
-                              Get.toNamed("/coin_view");
-                            });
-                          }),
-                    )
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                            icon: Icon(Icons.cancel),
+                            onPressed: () {
+                              setState(() {
+                                isSearching = !isSearching;
+                                Get.toNamed("/coin_view");
+                              });
+                            }),
+                      )
                     : IconButton(
                         icon: Icon(Icons.search),
                         onPressed: () {

@@ -7,6 +7,7 @@ import 'package:new_crypto_wallet/auth/binding/auth_binding.dart';
 import 'package:new_crypto_wallet/auth/register_status/register_statuse.dart';
 import 'package:new_crypto_wallet/auth/view/login.dart';
 import 'package:new_crypto_wallet/auth/view/register.dart';
+import 'package:new_crypto_wallet/core/binding/core_binding.dart';
 import 'package:new_crypto_wallet/core/widget/bottom_nav.dart';
 import 'package:new_crypto_wallet/home_vew/binding/coins_binding.dart';
 import 'package:new_crypto_wallet/loading_screen/loading_view/loading_screen.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
             page: () => LoadingScreen(),
             bindings: [
               AuthBinding(),
+              MajorCoinsViewBinding(),
             ]),
         GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
         GetPage(
@@ -53,13 +55,15 @@ class MyApp extends StatelessWidget {
             bindings: [
               AuthBinding(),
               AllCoinsBinding(),
-              CoinsBinding(),
-              MajorCoinsViewBinding()
+              // CoinsBinding(),
+              MajorCoinsViewBinding(),
+              CoreBinding()
             ]),
         GetPage(name: "/coin_view", page: () => CoinsView(), bindings: [
           AllCoinsBinding(),
-          CoinsBinding(),
-          MajorCoinsViewBinding()
+          //CoinsBinding(),
+          MajorCoinsViewBinding(),
+          CoreBinding()
         ]),
         GetPage(
             name: "/favorite_coins_view",
@@ -68,7 +72,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/all_coins_view",
             page: () => AllCoinsView(),
-            binding: AllCoinsBinding()),
+            bindings: [AllCoinsBinding(), CoreBinding()]),
         GetPage(
             name: "/Profile_view",
             page: () => ProfileView(),
@@ -76,7 +80,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/major_coin_view",
             page: () => MajorCoinView(),
-            binding: MajorCoinsViewBinding()),
+            bindings: [MajorCoinsViewBinding(), CoreBinding()]),
         GetPage(name: "/profile_view", page: () => ProfileView()),
         GetPage(
             name: "/search_coin_view",
@@ -85,7 +89,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/bottom_nav", page: () => BottomNav(), bindings: [
           AllCoinsBinding(),
           CoinsBinding(),
-          MajorCoinsViewBinding()
+          MajorCoinsViewBinding(),
+          CoreBinding()
         ])
       ],
       initialRoute: "/loading_screen",

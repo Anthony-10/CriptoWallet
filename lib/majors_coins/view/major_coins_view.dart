@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:new_crypto_wallet/core/repository/coin_repo_impl.dart';
 import 'package:new_crypto_wallet/majors_coins/controller/major_coins_controller.dart';
 
 class MajorCoinView extends StatefulWidget {
@@ -11,22 +10,21 @@ class MajorCoinView extends StatefulWidget {
 }
 
 class _MajorCoinViewState extends State<MajorCoinView> {
-  final majorcoinscontroller = Get.find<MajorCoinsController>();
-  final coinRepoImpl = Get.find<CoinRepoImpl>();
+  final majorCoinsController = Get.find<MajorCoinsController>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Obx(() {
-        if (majorcoinscontroller.isLoading.isTrue) {
+        if (majorCoinsController.isLoading.isTrue) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (majorcoinscontroller.major_cryptos == null) {
+        if (majorCoinsController.major_cryptos == null) {
           return Center(child: Text("Check your internet connection"));
         }
-        return majorcoinscontroller.listCryptos(context);
+        return majorCoinsController.listCryptos(context);
       }),
     );
   }

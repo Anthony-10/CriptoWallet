@@ -70,7 +70,7 @@ class _RegisterState extends State<Register> {
                     obscureText: true,
                     key: const ValueKey("password"),
                     textAlign: TextAlign.center,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Password",
                       fillColor: Colors.grey,
                       filled: true,

@@ -26,7 +26,10 @@ class _LoginState extends State<Login> {
                 children: [
                   Text(
                     "G-Market",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 50.0,
+                        color: Colors.amberAccent),
                   ),
                   SizedBox(height: 100.0),
                   TextFormField(
@@ -59,7 +62,12 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 20,
                   ),
-                  IconButton(icon: Icon(Icons.fingerprint, size: 60.0,), onPressed: (){}),
+                  IconButton(
+                      icon: Icon(
+                        Icons.fingerprint,
+                        size: 60.0,
+                      ),
+                      onPressed: () {}),
                   const SizedBox(
                     height: 20,
                   ),

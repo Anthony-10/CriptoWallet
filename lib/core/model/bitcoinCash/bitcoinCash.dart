@@ -9,7 +9,7 @@ class BitcoinCash {
   @JsonKey(name: "usd")
   var usd;
 
-
-  factory BitcoinCash.fromJson(Map<String, dynamic> json) => _$BitcoinCashFromJson(json);
+  factory BitcoinCash.fromJson(Map<String, dynamic> json) =>
+      _$BitcoinCashFromJson(json);
   Map<String, dynamic> toJson() => _$BitcoinCashToJson(this);
 }

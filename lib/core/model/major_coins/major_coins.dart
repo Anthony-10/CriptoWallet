@@ -21,7 +21,7 @@ class MajorCoins {
   @JsonKey(name: "bitcoin-cash")
   Map bitcoinCash;
 
-
-  factory MajorCoins.fromJson(Map<String, dynamic> json) => _$MajorCoinsFromJson(json);
+  factory MajorCoins.fromJson(Map<String, dynamic> json) =>
+      _$MajorCoinsFromJson(json);
   Map<String, dynamic> toJson() => _$MajorCoinsToJson(this);
 }

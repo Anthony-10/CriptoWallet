@@ -14,15 +14,13 @@ class AuthController extends GetxController {
     _firebaseUser.bindStream(_auth.authStateChanges());
   }
 
-  Future<void> createUser({String email, String password, String firstName}) async {
+  Future<void> createUser(
+      {String email, String password, String firstName}) async {
     try {
+      final CollectionReference reference =
+          FirebaseFirestore.instance.collection("Users");
 
-      final CollectionReference reference = FirebaseFirestore.instance.collection("Users");
-
-      Map<String, String> userdata = {
-        "First Name": firstName,
-        "Email" : email
-      };
+      Map<String, String> userdata = {"First Name": firstName, "Email": email};
 
       await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password.trim());
