@@ -125,7 +125,7 @@ class _CoinsViewState extends State<CoinsView> {
                         onPressed: () {
                           setState(() {
                             isSearching = !isSearching;
-                            Get.toNamed("/search_coin_view");
+                            //Get.toNamed("/search_coin_view");
                           });
                         }),
                 !isSearching

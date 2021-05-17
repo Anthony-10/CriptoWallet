@@ -50,6 +50,7 @@ class _RegisterState extends State<Register> {
                     ),
                     controller: _userController,
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     key: const ValueKey("email"),
                     textAlign: TextAlign.center,
@@ -66,6 +67,7 @@ class _RegisterState extends State<Register> {
                     ),
                     controller: _emailController,
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     obscureText: true,
                     key: const ValueKey("password"),

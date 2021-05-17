@@ -17,8 +17,11 @@ class AuthController extends GetxController {
   Future<void> createUser(
       {String email, String password, String firstName}) async {
     try {
-      final CollectionReference reference =
-          FirebaseFirestore.instance.collection("Users");
+      String uid = FirebaseAuth.instance.currentUser.uid;
+      final CollectionReference reference = FirebaseFirestore.instance
+          .collection("Users")
+          .doc(uid)
+          .collection("userInfo");
 
       Map<String, String> userdata = {"First Name": firstName, "Email": email};
 

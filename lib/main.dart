@@ -8,7 +8,7 @@ import 'package:new_crypto_wallet/auth/register_status/register_statuse.dart';
 import 'package:new_crypto_wallet/auth/view/login.dart';
 import 'package:new_crypto_wallet/auth/view/register.dart';
 import 'package:new_crypto_wallet/core/binding/core_binding.dart';
-import 'package:new_crypto_wallet/core/widget/bottom_nav.dart';
+import 'package:new_crypto_wallet/core/widget/bottom_nav/bottom_nav_view.dart';
 import 'package:new_crypto_wallet/home_vew/binding/coins_binding.dart';
 import 'package:new_crypto_wallet/loading_screen/loading_view/loading_screen.dart';
 import 'package:new_crypto_wallet/profile_vew/view/profile_view.dart';
