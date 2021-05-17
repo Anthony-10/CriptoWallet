@@ -7,5 +7,4 @@ class BottomNavBinding implements Bindings{
     // TODO: implement dependencies
     Get.put(BottomNavController());
   }
-
 }
