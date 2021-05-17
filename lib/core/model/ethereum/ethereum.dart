@@ -9,7 +9,7 @@ class Ethereum {
   @JsonKey(name: "usd")
   var usd;
 
-
-  factory Ethereum.fromJson(Map<String, dynamic> json) => _$EthereumFromJson(json);
+  factory Ethereum.fromJson(Map<String, dynamic> json) =>
+      _$EthereumFromJson(json);
   Map<String, dynamic> toJson() => _$EthereumToJson(this);
 }

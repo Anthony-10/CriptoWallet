@@ -9,7 +9,7 @@ class LiteCoin {
   @JsonKey(name: "usd")
   var usd;
 
-
-  factory LiteCoin.fromJson(Map<String, dynamic> json) => _$LiteCoinFromJson(json);
+  factory LiteCoin.fromJson(Map<String, dynamic> json) =>
+      _$LiteCoinFromJson(json);
   Map<String, dynamic> toJson() => _$LiteCoinToJson(this);
 }

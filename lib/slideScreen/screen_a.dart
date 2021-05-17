@@ -8,22 +8,25 @@ class ScreenA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    //final double width = MediaQuery.of(context).size.width;
 
     return Container(
-      constraints: BoxConstraints.expand(),
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
-      child: Align(
-        alignment: Alignment(0.0, -0.5),
-    child: Text(
-      title,
-    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0, color: Colors.amberAccent),
-    ),
-    )
-    );
+        constraints: BoxConstraints.expand(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            image:
+                DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
+        child: Align(
+          alignment: Alignment(0.0, -0.5),
+          child: Text(
+            title,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 50.0,
+                color: Colors.amberAccent),
+          ),
+        ));
   }
 }

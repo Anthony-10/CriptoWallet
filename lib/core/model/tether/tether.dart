@@ -9,7 +9,6 @@ class Tether {
   @JsonKey(name: "usd")
   var usd;
 
-
   factory Tether.fromJson(Map<String, dynamic> json) => _$TetherFromJson(json);
   Map<String, dynamic> toJson() => _$TetherToJson(this);
 }

@@ -12,11 +12,7 @@ class MajorCoinsController extends GetxController {
     loadCoins();
   }
 
-  //final searchTextController = TextEditingController();
-
   RxBool isLoading = false.obs;
-
-  //MajorCoins majorCoins = new MajorCoins();
 
   Map<String, dynamic> major_cryptos = {};
 
@@ -57,20 +53,6 @@ class MajorCoinsController extends GetxController {
       debugPrint("No data received");
     }
   }
-
-  // searchCoins() async {
-  //   showLoading();
-  //
-  //   final result = await _coinRepo.getSearchCoin(searchTextController.text);
-  //
-  //   hideLoading();
-  //
-  //   if (result != null) {
-  //     coins = result.obs;
-  //   } else {
-  //     debugPrint("No data received");
-  //   }
-  // }
 
   showLoading() {
     isLoading.toggle();

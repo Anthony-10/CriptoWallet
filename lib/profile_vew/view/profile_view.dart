@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
@@ -30,7 +31,11 @@ class _ProfileViewState extends State<ProfileView> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance.collection("Users").snapshots(),
+        stream: Firestore.instance
+            .collection("Users")
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .collection("userInfo")
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.isBlank) {
