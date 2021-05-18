@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_crypto_wallet/all_coins/controller/add_coins_controller.dart';
 import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
 
 class AllCoinsView extends StatefulWidget {
@@ -13,6 +14,7 @@ class _AllCoinsViewState extends State<AllCoinsView> {
   @override
   Widget build(BuildContext context) {
     final allCoinsController = Get.find<AllCoinsController>();
+    final addCoinsController = Get.find<AddCoinsController>();
 
     return Scaffold(
       body: SafeArea(
@@ -27,20 +29,25 @@ class _AllCoinsViewState extends State<AllCoinsView> {
               child: ListView.separated(
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        allCoinsController.coins[index].name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15.0),
-                      ),
-                      Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                              "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
-                              style: TextStyle(fontSize: 15.0)))
-                    ],
+                  return InkWell(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          allCoinsController.coins[index].name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15.0),
+                        ),
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                                "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
+                                style: TextStyle(fontSize: 15.0)))
+                      ],
+                    ),
+                    onTap: (){
+                      addCoinsController.addCoins(allCoinsController.coins[index].name,allCoinsController.coins[index].currentPrice);
+                    },
                   );
                 },
                 separatorBuilder: (context, index) => Divider(),

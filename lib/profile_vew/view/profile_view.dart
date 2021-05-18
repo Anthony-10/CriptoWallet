@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
+import 'package:new_crypto_wallet/auth/view/login.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -25,7 +26,9 @@ class _ProfileViewState extends State<ProfileView> {
           IconButton(
             icon: const Icon(Icons.exit_to_app),
             onPressed: () async {
-              authController.signOut();
+              authController.signOut((){
+                Get.toEnd(() => Login());
+              });
             },
           ),
         ],
@@ -33,8 +36,7 @@ class _ProfileViewState extends State<ProfileView> {
       body: StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance
             .collection("Users")
-            .doc(FirebaseAuth.instance.currentUser.uid)
-            .collection("userInfo")
+            .where("userId",isEqualTo:FirebaseAuth.instance.currentUser.uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
@@ -65,11 +67,11 @@ class _ProfileViewState extends State<ProfileView> {
                               SizedBox(width: 20),
                               Column(children: [
                                 Text(
-                                  snapshot.data.docs[index]['First Name']
+                                  snapshot.data.docs[index]['firstName']
                                       .toString(),
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
-                                Text(snapshot.data.docs[index]['Email']
+                                Text(snapshot.data.docs[index]['email']
                                     .toString()),
                               ])
                             ],

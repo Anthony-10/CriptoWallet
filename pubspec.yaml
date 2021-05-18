@@ -37,7 +37,7 @@ dependencies:
   firebase_auth:
   firebase_core:
   cloud_firestore: ^0.14.0+2
-  shared_preferences: ^2.0.5
+  shared_preferences: ^0.5.10
   local_auth:
 
 
