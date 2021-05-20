@@ -79,12 +79,16 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       authController.logIn(
                           email: _emailController.text,
-                          password: _passwordController.text,functionOnSuccess: ()async{
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                        prefs.setString("email", _emailController.text);
-                        prefs.setString("password", _passwordController.text);
-                        Get.toNamed("/bottom_nav");
-                      });
+                          password: _passwordController.text,
+                          functionOnSuccess: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString("email", _emailController.text);
+                            prefs.setString(
+                                "password", _passwordController.text);
+                            prefs.setBool("loginWithFinger", false);
+                            Get.toNamed("/bottom_nav");
+                          });
                     },
                     child: const Text("Sign In"),
                   ),
@@ -103,12 +107,16 @@ class _LoginState extends State<Login> {
                           final isAuthenticated =
                               await localAuth.authenticate();
                           if (isAuthenticated) {
-                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+
                             authController.logIn(
                                 email: prefs.getString("email"),
-                                password: prefs.getString("password"),functionOnSuccess: ()async{
-                              Get.toNamed("/bottom_nav");
-                            });
+                                password: prefs.getString("password"),
+                                functionOnSuccess: () async {
+                                  Get.toNamed("/bottom_nav");
+                                  prefs.setBool("loginWithFinger", true);
+                                });
                           }
                         }
                         //final biometrics = await localAuth.getBiometrics();

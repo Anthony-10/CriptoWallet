@@ -10,6 +10,6 @@ class NewsCoinView extends StatefulWidget {
 class _NewsCoinViewState extends State<NewsCoinView> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Text('NewsCoins'));
+    return SafeArea(child: Center(child: Text('Will Be Updated Soon', style: TextStyle(fontSize: 25.0),)));
   }
 }

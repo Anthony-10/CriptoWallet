@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
 import 'package:new_crypto_wallet/auth/view/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileView extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  RxBool loginStatus;
+
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
@@ -23,20 +26,27 @@ class _ProfileViewState extends State<ProfileView> {
         title: Center(
             child: Text("profile", style: TextStyle(color: Colors.black))),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () async {
-              authController.signOut((){
-                Get.toEnd(() => Login());
-              });
-            },
-          ),
+          loginStatus == true
+              ? IconButton(
+                  icon: const Icon(Icons.exit_to_app),
+                  onPressed: () async {
+                    Get.toEnd(() => Login());
+                  },
+                )
+              : IconButton(
+                  icon: const Icon(Icons.exit_to_app),
+                  onPressed: () async {
+                    authController.signOut(() {
+                      Get.toEnd(() => Login());
+                    });
+                  },
+                ),
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: Firestore.instance
             .collection("Users")
-            .where("userId",isEqualTo:FirebaseAuth.instance.currentUser.uid)
+            .where("userId", isEqualTo: FirebaseAuth.instance.currentUser.uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
@@ -101,5 +111,18 @@ class _ProfileViewState extends State<ProfileView> {
         },
       ),
     );
+  }
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   getLoginState();
+  // }
+
+  void getLoginState() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    loginStatus = prefs.getBool("loginWithFinger").obs;
   }
 }

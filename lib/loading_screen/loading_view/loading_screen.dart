@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/all_coins/binding/all_coins_binding.dart';
 import 'package:new_crypto_wallet/auth/register_status/register_statuse.dart';
-import 'package:new_crypto_wallet/slideScreen/screen_b.dart';
+import 'package:new_crypto_wallet/onboarding/view/onboding_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -26,7 +26,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         const Duration(seconds: 3),
         () => Get.to(
               () => initScreen == 0 || initScreen == null
-                  ? ScreenB()
+                  ? OnboardingView()
                   : RegisterStatus(),
               binding: AllCoinsBinding(),
             ));
