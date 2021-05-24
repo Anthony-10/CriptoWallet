@@ -15,7 +15,6 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return GetBuilder<BottomNavController>(
       builder: (controller) {
-
         return Scaffold(
           body: SafeArea(
             child: IndexedStack(
@@ -29,7 +28,7 @@ class _BottomNavState extends State<BottomNav> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.black,
-            selectedItemColor: Colors.redAccent,
+            selectedItemColor: Colors.amber,
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
             showSelectedLabels: false,

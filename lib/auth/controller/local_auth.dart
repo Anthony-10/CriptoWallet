@@ -29,8 +29,8 @@ class LocalAuth extends GetxController {
     try {
       return await _localAuth.authenticateWithBiometrics(
         localizedReason: 'Scan Fingerprint to Authenticate',
-        useErrorDialogs: true,
-        stickyAuth: true,
+        useErrorDialogs: false,
+        stickyAuth: false,
       );
     } on PlatformException catch (e) {
       return false;

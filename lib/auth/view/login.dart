@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
 import 'package:new_crypto_wallet/auth/controller/local_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -78,7 +79,16 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       authController.logIn(
                           email: _emailController.text,
-                          password: _passwordController.text);
+                          password: _passwordController.text,
+                          functionOnSuccess: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setString("email", _emailController.text);
+                            prefs.setString(
+                                "password", _passwordController.text);
+                            prefs.setBool("loginWithFinger", false);
+                            Get.toNamed("/bottom_nav");
+                          });
                     },
                     child: const Text("Sign In"),
                   ),
@@ -97,7 +107,16 @@ class _LoginState extends State<Login> {
                           final isAuthenticated =
                               await localAuth.authenticate();
                           if (isAuthenticated) {
-                            Get.toNamed("/bottom_nav");
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+
+                            authController.logIn(
+                                email: prefs.getString("email"),
+                                password: prefs.getString("password"),
+                                functionOnSuccess: () async {
+                                  Get.toNamed("/bottom_nav");
+                                  prefs.setBool("loginWithFinger", true);
+                                });
                           }
                         }
                         //final biometrics = await localAuth.getBiometrics();

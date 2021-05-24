@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
             bindings: [
               AuthBinding(),
               MajorCoinsViewBinding(),
+              BottomNavBinding(),
             ]),
         GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
         GetPage(
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget {
           CoinsBinding(),
           MajorCoinsViewBinding(),
           CoreBinding(),
-          BottomNavBinding()
+          BottomNavBinding(),
         ])
       ],
       initialRoute: "/loading_screen",
