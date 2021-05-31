@@ -95,35 +95,6 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 20,
                   ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.fingerprint,
-                        size: 60.0,
-                        color: Colors.white,
-                      ),
-                      onPressed: () async {
-                        final isAvailable = await localAuth.hasBiometrics();
-                        if (isAvailable) {
-                          final isAuthenticated =
-                              await localAuth.authenticate();
-                          if (isAuthenticated) {
-                            SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
-
-                            authController.logIn(
-                                email: prefs.getString("email"),
-                                password: prefs.getString("password"),
-                                functionOnSuccess: () async {
-                                  Get.toNamed("/bottom_nav");
-                                  prefs.setBool("loginWithFinger", true);
-                                });
-                          }
-                        }
-                        //final biometrics = await localAuth.getBiometrics();
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   TextButton(
                       onPressed: () {
                         Get.toNamed('/register');

@@ -1,12 +1,11 @@
- import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LocalAuth extends GetxController {
-   final _localAuth = LocalAuthentication();
+  final _localAuth = LocalAuthentication();
 
-
-   Future<bool> hasBiometrics() async {
+  Future<bool> hasBiometrics() async {
     try {
       return await _localAuth.canCheckBiometrics;
     } on PlatformException catch (e) {
@@ -14,7 +13,7 @@ class LocalAuth extends GetxController {
     }
   }
 
-   Future<List<BiometricType>> getBiometrics() async {
+  Future<List<BiometricType>> getBiometrics() async {
     try {
       return await _localAuth.getAvailableBiometrics();
     } on PlatformException catch (e) {
@@ -22,7 +21,7 @@ class LocalAuth extends GetxController {
     }
   }
 
-   Future<bool> authenticate() async {
+  Future<bool> authenticate() async {
     final isAvailable = await hasBiometrics();
     if (!isAvailable) return false;
 
