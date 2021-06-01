@@ -13,7 +13,7 @@ class AuthController extends GetxController {
 
   User get user => _firebaseUser.value;
 
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
 
   @override
@@ -62,7 +62,7 @@ class AuthController extends GetxController {
     String uid = FirebaseAuth.instance.currentUser.uid;
     try {
       if (uid != null) {
-        await _firestore
+        await _fireStore
             .collection("Users")
             .doc()
             .set({'email': email, 'firstName': firstName, 'userId': uid});
@@ -89,10 +89,9 @@ class AuthController extends GetxController {
     }
   }
 
-  void signOut(functionOnSuccess) {
+  void signOut() async {
     try {
-      _auth.signOut();
-      functionOnSuccess();
+      await _auth.signOut();
     } on FirebaseAuthException catch (e) {
       Get.snackbar("Error signOut account", e.message,
           snackPosition: SnackPosition.BOTTOM);

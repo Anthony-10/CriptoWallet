@@ -21,14 +21,14 @@ class ProfileController extends GetxController{
         },
       );
     } else{
-      IconButton(
-        icon: const Icon(Icons.exit_to_app),
-        onPressed: () async {
-          authController.signOut(() {
-            Get.toEnd(() => Login());
-          });
-        },
-      );
+      // IconButton(
+      //   icon: const Icon(Icons.exit_to_app),
+      //   onPressed: () async {
+      //     authController.signOut(() {
+      //       Get.toEnd(() => Login());
+      //     });
+      //   },
+      // );
     }
   }
 

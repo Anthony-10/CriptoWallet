@@ -30,6 +30,7 @@ class AllCoinsController extends GetxController {
     }
   }
 
+
   showLoading() {
     isLoading.toggle();
   }

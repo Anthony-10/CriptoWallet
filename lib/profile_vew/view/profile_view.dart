@@ -26,21 +26,12 @@ class _ProfileViewState extends State<ProfileView> {
         title: Center(
             child: Text("profile", style: TextStyle(color: Colors.black))),
         actions: <Widget>[
-          loginStatus == true
-              ? IconButton(
-                  icon: const Icon(Icons.exit_to_app),
-                  onPressed: () async {
-                    Get.toEnd(() => Login());
-                  },
-                )
-              : IconButton(
-                  icon: const Icon(Icons.exit_to_app),
-                  onPressed: () async {
-                    authController.signOut(() {
-                      Get.toEnd(() => Login());
-                    });
-                  },
-                ),
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            onPressed: () {
+              authController.signOut();
+            },
+          ),
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(

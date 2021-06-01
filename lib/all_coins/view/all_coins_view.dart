@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/all_coins/controller/add_coins_controller.dart';
@@ -11,6 +13,17 @@ class AllCoinsView extends StatefulWidget {
 }
 
 class _AllCoinsViewState extends State<AllCoinsView> {
+ // Timer timer;
+  final allCoinsController = Get.find<AllCoinsController>();
+
+/*  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    timer = Timer.periodic(
+        Duration(seconds: 10), (Timer t) => allCoinsController.loadCoins());
+  }*/
+
   @override
   Widget build(BuildContext context) {
     final allCoinsController = Get.find<AllCoinsController>();
@@ -38,15 +51,19 @@ class _AllCoinsViewState extends State<AllCoinsView> {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 15.0),
                         ),
-                        Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                                "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
-                                style: TextStyle(fontSize: 15.0)))
+                        Obx(
+                          () => Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                  "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
+                                  style: TextStyle(fontSize: 15.0))),
+                        )
                       ],
                     ),
-                    onTap: (){
-                      addCoinsController.addCoins(allCoinsController.coins[index].name,allCoinsController.coins[index].currentPrice);
+                    onTap: () {
+                      addCoinsController.addCoins(
+                          allCoinsController.coins[index].name,
+                          allCoinsController.coins[index].currentPrice);
                     },
                   );
                 },
