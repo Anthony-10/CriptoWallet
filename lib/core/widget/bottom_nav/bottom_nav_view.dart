@@ -27,14 +27,12 @@ class _BottomNavState extends State<BottomNav> {
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.black,
             selectedItemColor: Colors.amber,
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
             elevation: 0,
             items: [
               BottomNavigationBarItem(

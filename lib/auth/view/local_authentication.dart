@@ -91,7 +91,7 @@ class _LocalAuthenticationState extends State<LocalAuthentication>
               SizedBox(
                 height: 50.0,
               ),
-              Text('Touch the fingerprint sensor',
+              Text('Click on the fingerprint icon',
                   style: TextStyle(color: Colors.white)),
             ],
           ),

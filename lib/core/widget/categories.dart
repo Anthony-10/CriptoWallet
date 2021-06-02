@@ -10,7 +10,7 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   int selectedIndex = 0;
-  final List<String> categories = ["ALL", "FAVORITE", "MAJOR",""];
+  final List<String> categories = ["ALL", "FAVORITE", "MAJOR", ""];
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -42,10 +42,7 @@ class _CategoriesState extends State<Categories> {
                     ))),
                     child: Text(
                       categories[index],
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15.0,
-                          letterSpacing: 1.2),
+                      style: TextStyle(fontSize: 15.0, letterSpacing: 1.2),
                     ),
                   ),
                 ],

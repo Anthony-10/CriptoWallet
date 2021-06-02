@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+      /*theme: ThemeData(
         primarySwatch: Colors.blue,
-      ),
+      ),*/
       getPages: [
         GetPage(
             name: "/loading_screen",

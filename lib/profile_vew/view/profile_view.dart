@@ -19,7 +19,7 @@ class _ProfileViewState extends State<ProfileView> {
     final authController = Get.find<AuthController>();
 
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -33,73 +33,123 @@ class _ProfileViewState extends State<ProfileView> {
             },
           ),
         ],
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance
-            .collection("Users")
-            .where("userId", isEqualTo: FirebaseAuth.instance.currentUser.uid)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            if (snapshot.isBlank) {
-              return const Center(
-                child: Text(""),
-              );
-            }
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.size,
-                itemBuilder: (context, index) {
-                  return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundColor: Colors.black12,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.grey,
-                                  )),
-                              SizedBox(width: 20),
-                              Column(children: [
-                                Text(
-                                  snapshot.data.docs[index]['firstName']
-                                      .toString(),
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+      ),*/
+      body: SafeArea(
+        top: true,
+        child: Column(
+          children: [
+            Container(
+              height: 30.0,
+              child: Center(
+                child: Text("profile",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
+              ),
+            ),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: Firestore.instance
+                    .collection("Users")
+                    .where("userId",
+                        isEqualTo: FirebaseAuth.instance.currentUser.uid)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    if (snapshot.isBlank) {
+                      return const Center(
+                        child: Text(""),
+                      );
+                    }
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: snapshot.data.size,
+                        itemBuilder: (context, index) {
+                          return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.all(20.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                          radius: 40.0,
+                                          backgroundColor: Colors.black12,
+                                          child: Icon(
+                                            Icons.person,
+                                            color: Colors.grey,
+                                          )),
+                                      SizedBox(width: 20),
+                                      Column(children: [
+                                        Text(
+                                          snapshot.data.docs[index]['firstName']
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(snapshot.data.docs[index]['email']
+                                            .toString()),
+                                      ])
+                                    ],
+                                  ),
                                 ),
-                                Text(snapshot.data.docs[index]['email']
-                                    .toString()),
-                              ])
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        InkWell(
-                          child: ListTile(
-                            onTap: () {},
-                            title: const Text("Settings"),
-                            leading: const Icon(
-                              Icons.settings,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ]);
+                                Divider(),
+                                InkWell(
+                                  child: ListTile(
+                                    onTap: () {},
+                                    title: const Text("Settings"),
+                                    leading: const Icon(
+                                      Icons.settings,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  child: ListTile(
+                                    onTap: () {
+                                      authController.signOut();
+                                    },
+                                    title: const Text("LogOut"),
+                                    leading: const Icon(
+                                      Icons.exit_to_app,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  child: ListTile(
+                                    onTap: () {
+                                      Get.isDarkMode
+                                          ? Get.changeTheme(ThemeData.light())
+                                          : Get.changeTheme(ThemeData.dark());
+                                    },
+                                    title: const Text("ChangeTheme"),
+                                    leading: const Icon(
+                                      Icons.switch_left,
+                                    ),
+                                  ),
+                                ),
+                                // IconButton(icon: Icon(Icons.switch_left), onPressed: (){
+                                //   Get.isDarkMode
+                                //       ? Get.changeTheme(ThemeData.light())
+                                //       : Get.changeTheme(ThemeData.dark());
+                                // })
+                              ]);
+                        },
+                      );
+                    }
+                    return null;
+                  } else {
+                    return const Center(
+                      child: Text("loading..."),
+                    );
+                  }
                 },
-              );
-            }
-            return null;
-          } else {
-            return const Center(
-              child: Text("loading..."),
-            );
-          }
-        },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
