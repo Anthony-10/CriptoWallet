@@ -46,11 +46,11 @@ class MyApp extends StatelessWidget {
               MajorCoinsViewBinding(),
               BottomNavBinding(),
             ]),
-        GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
+       /* GetPage(name: "/login", page: () => Login(), binding: AuthBinding()),
         GetPage(
             name: "/register",
             page: () => Register(),
-            bindings: [AuthBinding()]),
+            bindings: [AuthBinding()]),*/
         GetPage(
             name: "/registerStatus",
             page: () => RegisterStatus(),
