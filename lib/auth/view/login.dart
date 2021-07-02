@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
 import 'package:new_crypto_wallet/auth/controller/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +29,7 @@ class _LoginState extends State<Login> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "G-Market",
+                    "Finexness",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 50.0,
@@ -40,7 +38,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 100.0),
                   TextFormField(
                     key: const ValueKey("username"),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     decoration: InputDecoration(
                         hintText: "Username",
                         fillColor: Colors.grey,
@@ -57,7 +55,7 @@ class _LoginState extends State<Login> {
                   TextFormField(
                     obscureText: true,
                     key: const ValueKey("password"),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     decoration: InputDecoration(
                       hintText: "Password",
                       fillColor: Colors.grey,
@@ -95,11 +93,19 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Get.toNamed('/register');
-                      },
-                      child: const Text('Dont have an account SignIn '))
+                  Row(
+                    children: [
+                      Text('Dont have an account?'),
+                          TextButton(
+                          onPressed: () {
+                            setState(() {
+
+                            });
+                            Get.toNamed('/register');
+                          },
+                          child: const Text('SignIn ')),
+                        ],
+                  )
                 ],
               );
             }),

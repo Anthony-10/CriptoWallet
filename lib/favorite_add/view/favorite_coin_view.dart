@@ -8,7 +8,7 @@ class FavoriteCoinsView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection("Favorites")
               .where("userId", isEqualTo: FirebaseAuth.instance.currentUser.uid)
               .snapshots(),
@@ -17,7 +17,7 @@ class FavoriteCoinsView extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.active) {
               if (!snapshot.hasData) {
                 return const Center(
-                  child: Text(""),
+                  child: Text("Check your connection"),
                 );
               }
               if (snapshot.hasData) {

@@ -23,15 +23,15 @@ class HttpServiceImpl implements HttpService {
 
   initializeInterceptors() {
     _dio.interceptors.add(InterceptorsWrapper(onError: (
-      error,
+      DioError e,handler,
     ) {
-      debugPrint(error.message);
+      debugPrint(e.message);
     }, onRequest: (
-      request,
+      request, handler
     ) {
       debugPrint("${request.method} | ${request.path}");
     }, onResponse: (
-      response,
+      response, handler
     ) {
       debugPrint(
           "${response.statusCode} ${response.statusMessage} ${response.data}");
