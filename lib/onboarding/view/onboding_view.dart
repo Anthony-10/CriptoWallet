@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/onboarding/controller/onboarding_controller.dart';
@@ -21,15 +22,24 @@ class OnboardingView extends StatelessWidget {
                       Image.asset(
                         _controller.onboardingPages[index].imageAsset,
                         fit: BoxFit.cover,
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
+                        height: Get.height,
+                        width: Get.width,
                       ),
                       Center(
-                        child: Text(_controller.onboardingPages[index].title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 50.0,
-                                color: Colors.amberAccent)),
+                        child: DefaultTextStyle(
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 50.0,
+                              color: Colors.amberAccent),
+                          child: AnimatedTextKit(
+                              isRepeatingAnimation: false,
+                              animatedTexts: [
+                                TypewriterAnimatedText(
+                                  _controller.onboardingPages[index].title,
+                                    speed: Duration(milliseconds: 60)
+                                )
+                              ]),
+                        ),
                       ),
                     ],
                   ),

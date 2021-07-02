@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "G-Market",
+                    "Finexness",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 50.0,
@@ -36,7 +36,7 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 100.0),
                   TextFormField(
                     key: const ValueKey("username"),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -53,7 +53,7 @@ class _RegisterState extends State<Register> {
                   SizedBox(height: 10.0),
                   TextFormField(
                     key: const ValueKey("email"),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     decoration: InputDecoration(
                       hintText: "Email",
                       fillColor: Colors.grey,
@@ -71,7 +71,7 @@ class _RegisterState extends State<Register> {
                   TextFormField(
                     obscureText: true,
                     key: const ValueKey("password"),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     decoration: InputDecoration(
                       hintText: "Password",
                       fillColor: Colors.grey,
@@ -101,11 +101,16 @@ class _RegisterState extends State<Register> {
                   const SizedBox(
                     height: 20,
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Get.toNamed('/login');
-                      },
-                      child: const Text('Already have an account Login')),
+                  Row(
+                    children: [
+                      Text('Already have an account?'),
+                          TextButton(
+                          onPressed: () {
+                            Get.toNamed('/login');
+                          },
+                          child: const Text('Login')),
+                        ],
+                  ),
                 ],
               );
             }),

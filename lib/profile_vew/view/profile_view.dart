@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
-import 'package:new_crypto_wallet/auth/view/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileView extends StatefulWidget {
@@ -34,39 +33,43 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: Firestore.instance
-            .collection("Users")
-            .where("userId", isEqualTo: FirebaseAuth.instance.currentUser.uid)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.active) {
-            if (snapshot.isBlank) {
-              return const Center(
-                child: Text(""),
-              );
-            }
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.size,
-                itemBuilder: (context, index) {
-                  return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(20.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CircleAvatar(
-                                  radius: 40.0,
-                                  backgroundColor: Colors.black12,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.grey,
-                                  )),
-                              SizedBox(width: 20),
-                              Column(children: [
+      body: Column(
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                  radius: 40.0,
+                  backgroundColor: Colors.black12,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.grey,
+                  )),
+              SizedBox(
+                width: 20.0,
+              ),
+              StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection("Users")
+                    .where("userId",
+                        isEqualTo: FirebaseAuth.instance.currentUser.uid)
+                    .snapshots(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: Text("Check your connection"),
+                      );
+                    } else {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          itemCount: snapshot.data.size,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 20,
+                              width: 20,
+                              margin: const EdgeInsets.all(20.0),
+                              child: Column(children: [
                                 Text(
                                   snapshot.data.docs[index]['firstName']
                                       .toString(),
@@ -74,32 +77,57 @@ class _ProfileViewState extends State<ProfileView> {
                                 ),
                                 Text(snapshot.data.docs[index]['email']
                                     .toString()),
-                              ])
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        InkWell(
-                          child: ListTile(
-                            onTap: () {},
-                            title: const Text("Settings"),
-                            leading: const Icon(
-                              Icons.settings,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ]);
+                              ]),
+                            );
+                          },
+                        );
+                      }
+                    }
+                    return null;
+                  } else {
+                    return const Center(
+                      child: Text("loading..."),
+                    );
+                  }
                 },
-              );
-            }
-            return null;
-          } else {
-            return const Center(
-              child: Text("loading..."),
-            );
-          }
-        },
+              ),
+            ],
+          ),
+          SizedBox(height: 30.0),
+          //Divider(),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.indigo[50],
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20.0),
+                      topRight: Radius.circular(20.0))),
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 10.0, top: 20.0, right: 10.0),
+                child: Column(
+                  children: [
+                    Card(
+                      child: InkWell(
+                        child: ListTile(
+                          onTap: () {},
+                          title: const Text("Settings"),
+                          leading: const Icon(
+                            Icons.settings,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      elevation: 20.0,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
