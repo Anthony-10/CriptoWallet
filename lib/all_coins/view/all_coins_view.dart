@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/all_coins/controller/add_coins_controller.dart';
 import 'package:new_crypto_wallet/all_coins/controller/all_coins_controller.dart';
@@ -12,7 +12,7 @@ class AllCoinsView extends StatefulWidget {
 }
 
 class _AllCoinsViewState extends State<AllCoinsView> {
- // Timer timer;
+  // Timer timer;
   final allCoinsController = Get.find<AllCoinsController>();
 
 /*  @override
@@ -37,33 +37,45 @@ class _AllCoinsViewState extends State<AllCoinsView> {
             );
           } else if (allCoinsController.coins != null) {
             return Container(
-              margin: EdgeInsets.all(10),
+              //padding: EdgeInsets.only(top: 20, ),
+              //padding: EdgeInsets.all(20),
               child: ListView.separated(
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          allCoinsController.coins[index].name,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15.0),
-                        ),
-                        Obx(
-                          () => Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                  "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
-                                  style: TextStyle(fontSize: 15.0))),
-                        )
-                      ],
+                  return Slidable(
+                    actionPane: SlidableDrawerActionPane(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 10, right: 20, left: 20, bottom: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            allCoinsController.coins[index].name,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15.0),
+                          ),
+                          Obx(
+                            () => Text(
+                                "USD: ${allCoinsController.coins[index].currentPrice.toString()}",
+                                style: TextStyle(fontSize: 15.0)),
+                          )
+                        ],
+                      ),
                     ),
-                    onTap: () {
-                      addCoinsController.addCoins(
-                          allCoinsController.coins[index].name,
-                          allCoinsController.coins[index].currentPrice);
-                    },
+                    secondaryActions: [
+                      IconSlideAction(
+                        caption: 'Favorite',
+                        color: Colors.amberAccent,
+                        icon: Icons.favorite,
+                        onTap: () {
+                          addCoinsController.addCoins(
+                              allCoinsController.coins[index].name,
+                              allCoinsController.coins[index].currentPrice);
+                        },
+                      )
+                    ],
                   );
                 },
                 separatorBuilder: (context, index) => Divider(),

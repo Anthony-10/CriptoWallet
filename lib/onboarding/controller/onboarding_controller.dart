@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_crypto_wallet/auth/view/auth_view.dart';
 import 'package:new_crypto_wallet/onboarding/model/onboarding_model.dart';
 
 class OnboardingController extends GetxController {
@@ -8,10 +9,10 @@ class OnboardingController extends GetxController {
   var pageController = PageController();
   forwardAction() {
     if (isLastPage) {
-      Get.toNamed("/register");
+      Get.to(AuthView());
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
-  }
+    }
   }
 
   List<OnboardingModel> onboardingPages = [

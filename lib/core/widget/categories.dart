@@ -10,7 +10,7 @@ class Categories extends StatefulWidget {
 
 class _CategoriesState extends State<Categories> {
   int selectedIndex = 0;
-  final List<String> categories = ["ALL", "FAVORITE", "MAJOR", ""];
+  final List<String> categories = ["ALL", "FAVORITE", "MAJOR"];
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

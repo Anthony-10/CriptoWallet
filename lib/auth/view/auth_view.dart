@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:new_crypto_wallet/auth/controller/auth_controller.dart';
 import 'package:new_crypto_wallet/auth/controller/local_auth.dart';
@@ -136,7 +137,7 @@ class _AuthViewState extends State<AuthView> {
                               borderRadius: BorderRadius.circular(30.0),
                             ),*/
                               ),
-                             /* style: TextStyle(
+                              /* style: TextStyle(
                                 color: Colors.white,
                               ),*/
                               controller: _passwordController,
@@ -218,7 +219,7 @@ class _AuthViewState extends State<AuthView> {
                               borderRadius: BorderRadius.circular(30.0),
                             ),*/
                               ),
-                             /* style: TextStyle(
+                              /* style: TextStyle(
                                 color: Colors.white,
                               ),*/
                               controller: _emailController,

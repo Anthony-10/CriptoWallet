@@ -18,91 +18,88 @@ class _ProfileViewState extends State<ProfileView> {
     final authController = Get.find<AuthController>();
 
     return Scaffold(
-        /*appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        title: Center(
-            child: Text("profile", style: TextStyle(color: Colors.black))),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () {
-              authController.signOut();
-            },
-          ),
-        ],
-<<<<<<< HEAD
-      ),*/
         body: SafeArea(
       top: true,
       child: Column(
         children: [
           Container(
-            height: 30.0,
+            height: 40.0,
             child: Center(
               child: Text("profile",
                   style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
             ),
           ),
-          Row(
-            children: [
-              CircleAvatar(
-                  radius: 40.0,
-                  backgroundColor: Colors.black12,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.grey,
-                  )),
-              SizedBox(
-                width: 20.0,
-              ),
-              StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection("Users")
-                    .where("userId",
-                        isEqualTo: FirebaseAuth.instance.currentUser.uid)
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.active) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: Text("Check your connection"),
-                      );
-                    } else {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          itemCount: snapshot.data.size,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              height: 20,
-                              width: 20,
-                              margin: const EdgeInsets.all(20.0),
-                              child: Column(children: [
-                                Text(
-                                  snapshot.data.docs[index]['firstName']
-                                      .toString(),
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(snapshot.data.docs[index]['email']
-                                    .toString()),
-                              ]),
-                            );
-                          },
+          Padding(
+            padding: const EdgeInsets.only(top: 5, right: 20, left: 20),
+            child: Row(
+              children: [
+                Stack(
+                  children: [
+                    CircleAvatar(
+                        radius: 50.0,
+                        backgroundColor: Colors.black12,
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.grey,
+                        )),
+                    Positioned(
+                        bottom: 5,
+                        right: -14,
+                        child: IconButton(
+                            onPressed: () {}, icon: Icon(Icons.camera_alt))),
+                  ],
+                ),
+                SizedBox(
+                  width: 20.0,
+                ),
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("Users")
+                      .where("userId",
+                          isEqualTo: FirebaseAuth.instance.currentUser.uid)
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      if (!snapshot.hasData) {
+                        return const Center(
+                          child: Text("Check your connection"),
                         );
+                      } else {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            itemCount: snapshot.data.size,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 20,
+                                width: 20,
+                                margin: const EdgeInsets.all(20.0),
+                                child: Column(children: [
+                                  Text(
+                                    snapshot.data.docs[index]['firstName']
+                                        .toString(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(snapshot.data.docs[index]['email']
+                                      .toString()),
+                                ]),
+                              );
+                            },
+                          );
+                        }
                       }
+                      return null;
+                    } else {
+                      return const Center(
+                        child: Text("loading..."),
+                      );
                     }
-                    return null;
-                  } else {
-                    return const Center(
-                      child: Text("loading..."),
-                    );
-                  }
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
           SizedBox(height: 30.0),
           //Divider(),
